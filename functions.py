@@ -89,6 +89,8 @@ def profile_plot(fignum, filename, figsize, title, grid, lith,ids,v,rock_colors)
         ax1.set_ylim(v[0],)
     elif v[0] != -9999. and v[1] != -9999.:
         ax1.set_ylim(v[0],v[1])
+    np.save(filename[:-4]+'_s.npy',distance)
+    np.save(filename[:-4]+'_eta.npy',eta)
         
     ax2 = fig1.add_subplot(122)
     data = np.flipud(grid.at_node['topographic__elevation'].reshape(grid.shape)).copy() 

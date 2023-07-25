@@ -127,7 +127,7 @@ for t in range(0,int(T/dt)+1):
         fignum+=1
         
 plot_relief(fignum+total_plots*6, save_folder+'/_relief.png',\
-        save_folder+'/_relief.npy', save_folder+'/_relief.npy',\
+        save_folder+'/_time.npy', save_folder+'/_relief.npy',\
         figsize,np.linspace(0,T,int(T/dt)+1),R,[0,max_elevation])  
 
 if save_final_topography == True:
