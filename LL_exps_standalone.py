@@ -82,6 +82,10 @@ fignum = 1
 total_plots = int(T/dt_plot + 1)
 #relief time series
 R = np.zeros(int(T/dt + 1))
+update_elevation = 0
+if max_elevation == -9999.:
+    update_elevation = 1
+
 for t in range(0,int(T/dt)+1):
     #calculate total relief
     R[t] = np.max(grid.at_node['topographic__elevation']) - np.min(grid.at_node['topographic__elevation'])
@@ -101,9 +105,9 @@ for t in range(0,int(T/dt)+1):
     if t%(int(dt_plot/dt))==0:
         year = round(t * dt)
         print ('plotting at '+str(year)+' years...')
+        if update_elevation == 1:
+            max_elevation = np.max(grid.at_node['topographic__elevation'][grid.core_nodes])
         if plot_topography == True:
-            if max_elevation == -9999:
-                max_elevation = np.max(grid.at_node['topographic__elevation'][grid.core_nodes])
             simple_plot(fignum,save_folder+'/topography_'+str(year)+'yrs.png',\
                         figsize,'T = ' + str(round(t*dt/1000)) +' kyrs',grid,'topographic__elevation','elevation [m]','terrain',False,[0,max_elevation])
         if plot_drainage_area == True:

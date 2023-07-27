@@ -140,7 +140,7 @@ def x_cross_section(fignum, filename, figsize, title, grid, lith,ids, y_plot,v,r
         
 def y_cross_section(fignum, filename, figsize, title, grid, lith,ids, x_plot,v,rock_colors):
     plt.figure(fignum, figsize = figsize)
-    y_plot = grid.x_of_node[grid.y_of_node == x_plot]
+    y_plot = grid.y_of_node[grid.x_of_node == x_plot]
     eta = grid.at_node['topographic__elevation'][grid.x_of_node == x_plot]
     
     num_layers = lith.z_top.shape[0]
